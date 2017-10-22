@@ -1,0 +1,71 @@
+<html>
+	<head>
+		<title> Cari Penduduk </title>
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"></link>
+			<link rel="stylesheet" type="text/css" href="/js/datatables.min.css"></link>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        	<link rel="stylesheet" type="text/css" href="/css/datatables.min.css"/>
+   			<script type="text/javascript" src="/js/datatables.min.js"></script>
+			<link rel="stylesheet" type="text/css" href="/js/datatables.css"></link>
+			
+			<script type="text/javascript" charset="utf8" src="/js/datatables.min.js"></script>
+			<script type="text/javascript" charset="utf8" src="/js/datatables.js"></script>
+	</head>
+	<body>
+		<div th:fragment="header">
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
+				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item">
+						<a class="nav-link" href="/">Home</a>
+						</li>
+						<li class="nav-item">
+						<a class="nav-link" href="/student/viewall"> Cari Data</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<div class="col-lg-6">
+		<form action="/penduduk/cari-kelurahan" method="GET">
+					
+					<div th:if="${sudah_kota==true}">
+			            <select class="form-control" name="kota" th:value="${kota}" readonly="true">
+  							<option th:value="${kota}" th:text="${nama_kota}"></option>
+						</select>
+        			</div>
+        			<div th:unless="${sudah_kota==true}">
+        				<select class="form-control" name="kota">
+  							<option th:each="kota,iterationStatus: ${list_kota}" th:value="${kota.id}" th:text="${kota.nama_kota}"></option>
+						</select>
+        			</div>
+        			<div th:if="${sudah_kec==true}">
+			            <select class="form-control" name="kec" th:value="${kec}" readonly="true">
+  							<option th:value="${kec}" th:text="${nama_kecamatan}"></option>
+						</select>
+        			</div>
+        			<div th:unless="${sudah_kec==true}">
+        				<select class="form-control" name="kec">
+  							<option th:each="kecamatan,iterationStatus: ${list_kecamatan}" th:value="${kecamatan.id}" th:text="${kecamatan.nama_kecamatan}"></option>
+						</select>
+        			</div>
+        			<div th:if="${sudah_kel==true}">
+			            <select class="form-control" name="kel" th:value="${kel}" readonly="true">
+  							<option th:value="${kel}" th:text="${anma_kelurahan}"></option>
+						</select>
+        			</div>
+        			<div th:unless="${sudah_kel==true}">
+        				<select class="form-control" name="kel">
+  							<option th:each="kelurahan,iterationStatus: ${list_kelurahan}" th:value="${kelurahan.id}" th:text="${kelurahan.nama_kelurahan}"></option>
+						</select>
+        			</div>
+					<button type="submit">Submit</button>
+				</form>
+			</div>
+	</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title> View Keluarga dari NKK </title>
+        <div th:replace="fragments/fragment :: links"> </div>
+    </head>
+    <body>
+    	<div th:replace="fragments/fragment :: header"> </div>
+    	<div class="col-lg-6">
+    	<h3 th:text="'Lihat Data Keluarga - ' + ${keluarga.nomor_kk}"></h3>
+       	<table>
+       		<tr>
+       			<td> <h5> NKK </h5> </td>
+       			<td> <p th:text="${keluarga.nomor_kk}"> </p> </td>
+       		</tr>
+       		<tr>
+       			<td> <h5> Alamat </h5> </td>
+       			<td> <p th:text="${keluarga.alamat}"> </p> </td>
+       		</tr>
+       		<tr>
+       			<td> <h5> RT/RW </h5> </td>
+       			<td> <p th:text="${keluarga.rt} + '/' + ${keluarga.rw}"> </p> </td>
+       		</tr>
+       		<tr>
+       			<td> <h5> Kelurahan/Desa </h5> </td>
+       			<td> <p th:text="${kelurahan.nama_kelurahan}"> </p> </td>
+       		</tr>
+       		<tr>
+       			<td> <h5> Kecamatan </h5> </td>
+       			<td> <p th:text="${kecamatan.nama_kecamatan}"> </p> </td>
+       		</tr>
+       		<tr>
+       			<td> <h5> Kota </h5> </td>
+       			<td> <p th:text="${kota.nama_kota}"> </p> </td>
+       		</tr>
+       	</table>
+       	<hr></hr>
+       	<table>
+       		<tr>
+       			<th class="col-lg-6"> <h5> No. </h5> </th>
+       			<th class="col-lg-6"> <h5> Nama Lengkap </h5> </th>
+       			<th class="col-lg-6"> <h5> NIK </h5> </th>
+       			<th class="col-lg-6"> <h5> Jenis Kelamin </h5> </th>
+       			<th class="col-lg-6"> <h5> Tempat Lahir </h5> </th>
+       			<th class="col-lg-6"> <h5> Tanggal Lahir </h5> </th>
+       			<th class="col-lg-6"> <h5> Agama </h5> </th>
+       			<th class="col-lg-6"> <h5> Pekerjaan </h5> </th>
+       			<th class="col-lg-6"> <h5> Status Perkawinan </h5> </th>
+       			<th class="col-lg-6"> <h5> Status dalam Keluarga </h5> </th>
+       			<th class="col-lg-6"> <h5> Kewarganegaraan </h5> </th>
+       			<th class="col-lg-6"> <h5> Status KK </h5> </th>
+       		</tr>
+       		<tr th:each="penduduk, iterationStatus: ${keluarga.anggotaKeluarga}">
+       			<td th:text="${iterationStatus.count}"></td>
+       			<td class="col-lg-6"> <p th:text="${penduduk.nama}"> </p> </td>
+       			<td class="col-lg-6"> <p th:text="${penduduk.nik}"> </p> </td>
+       			<td class="col-lg-6"> <p th:if="${penduduk.jenis_kelamin >= 1}"> Wanita </p> 
+       			<p th:unless="${penduduk.jenis_kelamin >= 1}"> Pria </p></td>
+       			<td class="col-lg-6"> <p th:text="${penduduk.tempat_lahir}"> </p> </td>
+       			<td class="col-lg-6"> <p th:text="${penduduk.tanggal_lahir}"> </p> </td>
+       			<td class="col-lg-6"> <p th:text="${penduduk.agama}"> </p> </td>
+       			<td class="col-lg-6"> <p th:text="${penduduk.pekerjaan}"> </p> </td>
+       			<td class="col-lg-6"> <p th:text="${penduduk.status_perkawinan}"> </p> </td>
+       			<td class="col-lg-6"> <p th:text="${penduduk.status_dalam_keluarga}"> </p> </td>
+       			<td class="col-lg-6"> <p th:if="${penduduk.is_wni >= 1}"> WNI </p> 
+       			<p th:unless="${penduduk.is_wni >= 1}"> WNA </p></td>
+       			<td class="col-lg-6"> <p th:if="${keluarga.is_tidak_berlaku >= 1}"> Tidak Berlaku </p> 
+       			<p th:unless="${keluarga.is_tidak_berlaku >= 1}"> Berlaku </p> </td>
+       		</tr>
+       	</table>
+       </div>
+    </body>
+</html>

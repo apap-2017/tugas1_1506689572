@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title> Update Keluarga</title>
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"></link>
+			<link rel="stylesheet" type="text/css" href="/js/datatables.min.css"></link>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        	<link rel="stylesheet" type="text/css" href="/css/datatables.min.css"/>
+   			<script type="text/javascript" src="/js/datatables.min.js"></script>
+			<link rel="stylesheet" type="text/css" href="/js/datatables.css"></link>
+			
+			<script type="text/javascript" charset="utf8" src="/js/datatables.min.js"></script>
+			<script type="text/javascript" charset="utf8" src="/js/datatables.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	<body>
+		<div th:fragment="header">
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+				<a class="navbar-brand" href="#">SI Kependudukan</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
+				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item">
+						<a class="nav-link" href="/">Home</a>
+						</li>
+						<li class="nav-item">
+						<a class="nav-link" href="/student/viewall"> Cari Data</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<div class="col-lg-6">
+		<h2 th:if="${flagSukses == true}"> Sukses! </h2>
+		<p th:if="${flagSukses == true}" th:text="'Keluarga dengan NKK ' + ${nomorKkLama} + ' berhasil diubah'"> </p> 
+		
+		<h1 class="page-header"> Update Keluarga </h1>
+		<form th:object="${keluarga}" th:action="'/keluarga/ubah/' + ${keluarga.nomor_kk}" method="POST">
+		<div>
+			<label for="nomor_kk"> Nomor KK </label> <br /> <input th:field="*{nomor_kk}" type="text" name="nomor_kk" readonly="true" th:value="${keluarga.nomor_kk}" />
+		</div>
+		<div>
+			<label for="alamat"> Alamat </label> <br /> <input th:field="*{alamat}" type="text" name="alamat" th:value="${keluarga.alamat}" />
+		</div>
+		<div>
+			<label for="rt"> RT </label> <br /> <input th:field="*{rt}" type="text" name="rt" th:value="${keluarga.rt}" />
+		</div>
+		<div>
+			<label for="rw"> RW </label> <br /> <input th:field="*{rw}" type="text" name="rw" th:value="${keluarga.rw}" />
+		</div>
+		<div>
+			<label for="kelurahan"> Kelurahan/Desa </label> <br /> <input type="text" name="kelurahan" th:value="${kelurahan}" />
+		</div>
+		<div>
+			<label for="kecamatan"> Kecamatan </label> <br /> <input type="text" name="kecamatan" th:value="${kecamatan}" />
+		</div>
+		<div>
+			<label for="kota"> Kota </label> <br /> <input type="text" name="kota" th:value="${kota}" />
+		</div>
+		<input type="hidden" th:value="${keluarga.id}" th:field="*{id}" />		
+		<button type="submit" name="action" value="submit"> Submit </button>
+	</form>
+	</div>
+	</body>
+</html>

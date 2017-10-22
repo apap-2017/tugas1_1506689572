@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title> Tambah Keluarga</title>
+		<div th:replace="fragments/fragment :: links"> </div>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	<body>
+		<div th:replace="fragments/fragment :: header"> </div>
+		<div class="col-lg-6">
+		<h1 class="page-header"> Tambah Keluarga </h1>
+		<form action="/keluarga/tambah/submit" method="POST">
+		<table>
+			<tr> <td> <h5> Alamat </h5> </td> </tr> 
+			<tr> <td> <input type="text" name="alamat" /> </td> </tr>
+			<tr> <td> <h5> RT </h5> </td> </tr>
+			<tr> <td> <input type="text" name="rt" /> </td> </tr>
+			<tr> <td> <h5> RW </h5> </td> </tr>
+			<tr> <td> <input type="text" name="rw" /> </td> </tr>
+			<tr> <td> <h5> Kelurahan/Desa </h5> </td> </tr>
+			<tr> <td> <input type="text" name="kelurahan" /> </td> </tr> 
+			<tr> <td> <h5> Kecamatan </h5> </td> </tr>
+			<tr> <td> <input type="text" name="kecamatan" /> </td> </tr>
+			<tr> <td> <h5> Kota </h5> </td> </tr>
+			<tr> <td> <input type="text" name="kota" /> </td> </tr>
+		</table>		
+		<button type="submit" name="action" value="submit"> Submit </button>
+	</form>
+	</div>
+	</body>
+</html>
